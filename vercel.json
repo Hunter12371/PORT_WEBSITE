@@ -1,11 +1,22 @@
 {
-  "buildCommand": "echo 'Static site - no build required'",
+  "version": 2,
+  "buildCommand": "",
   "outputDirectory": ".",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
+  "public": true,
+  "headers": [
     {
       "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(?!.*\\.(?:js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|otf|ttf)$).*",
       "destination": "/index.html"
     }
   ]
