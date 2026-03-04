@@ -1,6 +1,3 @@
 {
-  "version": 2,
-  "buildCommand": "",
-  "outputDirectory": "public",
-  "public": false
+  "version": 2
 }
