@@ -66,17 +66,10 @@
   if (window.matchMedia('(pointer: fine)').matches) {
     requestAnimationFrame(updateCursor);
 
-    // Hover effect on interactive elements
-    const hoverTargets = document.querySelectorAll(
-      'a, button, .helmet-card, .product-card, .contact-info-card, .split-panel, .calendar-item'
-    );
-    hoverTargets.forEach(function(el) {
-      el.addEventListener('mouseenter', function() {
-        document.body.classList.add('cursor-hover');
-      });
-      el.addEventListener('mouseleave', function() {
-        document.body.classList.remove('cursor-hover');
-      });
+    // Single delegated listener — avoids per-child mouseleave/enter flicker
+    var HOVER_SEL = 'a, button, .helmet-card, .product-card, .contact-info-card, .split-panel, .calendar-item';
+    document.addEventListener('mouseover', function(e) {
+      document.body.classList.toggle('cursor-hover', !!e.target.closest(HOVER_SEL));
     });
   }
 
@@ -384,6 +377,88 @@
       const x = (e.clientX / window.innerWidth - 0.5) * 20;
       const y = (e.clientY / window.innerHeight - 0.5) * 10;
       heroNumber.style.transform = 'translateY(-50%) translate(' + x + 'px, ' + y + 'px)';
+    });
+  }
+
+  // -------- 3D MAGNETIC TILT ON ALL CARDS --------
+  function enable3DTilt(selector, options) {
+    const cfg = Object.assign({
+      maxRotateX: 10,
+      maxRotateY: 12,
+      perspective: 1000,
+      speed: 0.09
+    }, options);
+
+    document.querySelectorAll(selector).forEach(function(el) {
+      var cachedRect = null;  // snapshot ONCE on enter — never re-query during move
+      var rafId = null;
+      var tRX = 0, tRY = 0; // targets
+      var cRX = 0, cRY = 0; // current lerped values
+
+      function frame() {
+        rafId = null;
+        cRX += (tRX - cRX) * cfg.speed;
+        cRY += (tRY - cRY) * cfg.speed;
+        el.style.transform =
+          'perspective(' + cfg.perspective + 'px) ' +
+          'rotateX(' + cRX.toFixed(3) + 'deg) ' +
+          'rotateY(' + cRY.toFixed(3) + 'deg)';
+        // Keep running only while there's meaningful delta
+        if (Math.abs(tRX - cRX) > 0.02 || Math.abs(tRY - cRY) > 0.02) {
+          rafId = requestAnimationFrame(frame);
+        }
+      }
+
+      el.addEventListener('mouseenter', function() {
+        // Clear any outgoing transition and snapshot pre-transform rect
+        el.style.transition = 'none';
+        el.style.transform = '';
+        // getBoundingClientRect BEFORE any scale/rotate so center is accurate
+        cachedRect = el.getBoundingClientRect();
+      });
+
+      el.addEventListener('mousemove', function(e) {
+        if (!cachedRect) return;
+        var hw = cachedRect.width  * 0.5;
+        var hh = cachedRect.height * 0.5;
+        // Clamp to [-1, 1] so edges don't over-rotate
+        var dx = Math.max(-1, Math.min(1, (e.clientX - cachedRect.left  - hw) / hw));
+        var dy = Math.max(-1, Math.min(1, (e.clientY - cachedRect.top   - hh) / hh));
+        tRY =  dx * cfg.maxRotateY;
+        tRX = -dy * cfg.maxRotateX;
+        if (!rafId) rafId = requestAnimationFrame(frame);
+      });
+
+      el.addEventListener('mouseleave', function() {
+        cachedRect = null;
+        tRX = 0; tRY = 0;
+        cRX = 0; cRY = 0;
+        if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+        // CSS transition handles the smooth return — no RAF needed
+        el.style.transition = 'transform 0.55s cubic-bezier(0.23, 1, 0.32, 1)';
+        el.style.transform   = '';
+        setTimeout(function() { el.style.transition = ''; }, 580);
+      });
+    });
+  }
+
+  // Apply 3D tilt to all interactive cards
+  if (window.matchMedia('(pointer: fine)').matches) {
+    enable3DTilt('.split-panel',       { maxRotateX: 7,  maxRotateY: 9  });
+    enable3DTilt('.helmet-card',       { maxRotateX: 9,  maxRotateY: 11 });
+    enable3DTilt('.contact-info-card', { maxRotateX: 7,  maxRotateY: 9  });
+    enable3DTilt('.product-card',      { maxRotateX: 7,  maxRotateY: 9  });
+    enable3DTilt('.calendar-item',     { maxRotateX: 4,  maxRotateY: 6  });
+  }
+
+  // -------- 3D HERO MOUSE PARALLAX --------
+  const heroContent = document.querySelector('.hero-content');
+  if (heroContent && window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', function(e) {
+      const x = (e.clientX / window.innerWidth - 0.5) * 8;
+      const y = (e.clientY / window.innerHeight - 0.5) * 6;
+      heroContent.style.transform =
+        'perspective(1200px) rotateY(' + x + 'deg) rotateX(' + (-y) + 'deg)';
     });
   }
 
