@@ -42,23 +42,349 @@
   <!-- ===== LOADING SCREEN ===== -->
   <div id="loader" aria-hidden="true">
     <div class="loader-bg"></div>
-    <div class="loader-name">
-      <span class="loader-letter" data-letter="S">S</span>
-      <span class="loader-letter" data-letter="I">I</span>
-      <span class="loader-letter" data-letter="D">D</span>
-      <span class="loader-letter" data-letter="D">D</span>
-      <span class="loader-space"> </span>
-      <span class="loader-letter" data-letter="S">S</span>
-      <span class="loader-letter" data-letter="R">R</span>
-      <span class="loader-letter" data-letter="I">I</span>
-      <span class="loader-letter" data-letter="V">V</span>
-      <span class="loader-letter" data-letter="A">A</span>
-      <span class="loader-letter" data-letter="S">S</span>
+
+    <!-- Name -->
+    <div class="loader-content">
+      <div class="loader-name">
+        <span class="loader-letter" data-letter="S">S</span>
+        <span class="loader-letter" data-letter="I">I</span>
+        <span class="loader-letter" data-letter="D">D</span>
+        <span class="loader-letter" data-letter="D">D</span>
+        <span class="loader-space"> </span>
+        <span class="loader-letter" data-letter="S">S</span>
+        <span class="loader-letter" data-letter="R">R</span>
+        <span class="loader-letter" data-letter="I">I</span>
+        <span class="loader-letter" data-letter="V">V</span>
+        <span class="loader-letter" data-letter="A">A</span>
+        <span class="loader-letter" data-letter="S">S</span>
+      </div>
+      <div class="loader-tagline">AI ENGINEER &nbsp;/&nbsp; PORTFOLIO</div>
     </div>
-    <div class="loader-line"></div>
-    <div class="loader-bar">
-      <div class="loader-bar-fill"></div>
+
+    <!-- Racing section -->
+    <div class="loader-race-section">
+      <!-- Speed streak lines behind the car -->
+      <div class="loader-streaks">
+        <div class="loader-streak s1"></div>
+        <div class="loader-streak s2"></div>
+        <div class="loader-streak s3"></div>
+        <div class="loader-streak s4"></div>
+        <div class="loader-streak s5"></div>
+        <div class="loader-streak s6"></div>
+      </div>
+
+      <!-- The car -->
+      <div class="loader-car-wrap">
+        <div class="loader-exhaust-glow"></div>
+        <!-- F1 CAR — Proper 2022-era proportions, front faces RIGHT -->
+        <svg class="loader-car-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 165" aria-hidden="true">
+          <defs>
+            <radialGradient id="tg" cx="42%" cy="38%" r="58%">
+              <stop offset="0%" stop-color="#2d2d2d"/>
+              <stop offset="100%" stop-color="#0a0a0a"/>
+            </radialGradient>
+            <radialGradient id="rg" cx="35%" cy="32%" r="62%">
+              <stop offset="0%" stop-color="#3c3c3c"/>
+              <stop offset="70%" stop-color="#1a1a1a"/>
+              <stop offset="100%" stop-color="#101010"/>
+            </radialGradient>
+            <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#2a2a2a"/>
+              <stop offset="40%" stop-color="#181818"/>
+              <stop offset="100%" stop-color="#0e0e0e"/>
+            </linearGradient>
+          </defs>
+
+          <!-- ═══════════════════════════════════════
+               REAR WING  (leftmost, car goes L→R)
+          ═══════════════════════════════════════ -->
+          <!-- Left endplate -->
+          <path d="M 56,18 L 58,90 L 66,90 L 70,18 Z" fill="#1c1c1c" stroke="#2e2e2e" stroke-width="0.8"/>
+          <!-- Right endplate -->
+          <path d="M 124,18 L 126,90 L 134,90 L 136,18 Z" fill="#1c1c1c" stroke="#2e2e2e" stroke-width="0.8"/>
+          <!-- Endplate top caps -->
+          <rect x="56" y="15" width="80" height="5" rx="2" fill="#252525"/>
+          <!-- DRS upper flap -->
+          <rect x="55" y="20" width="82" height="12" rx="2" fill="#C5F100"/>
+          <!-- DRS gap -->
+          <rect x="55" y="32" width="82" height="3" rx="1" fill="#060606"/>
+          <!-- Main wing plane -->
+          <rect x="55" y="35" width="82" height="14" rx="2" fill="#C5F100" opacity="0.9"/>
+          <!-- Beam wing (lower) -->
+          <rect x="65" y="70" width="62" height="8" rx="2" fill="#1e1e1e"/>
+          <rect x="65" y="70" width="62" height="3" rx="1" fill="#C5F100" opacity="0.4"/>
+          <!-- Swan neck struts -->
+          <path d="M 88,50 Q 89,62 90,72" fill="none" stroke="#2a2a2a" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 104,50 Q 103,62 102,72" fill="none" stroke="#2a2a2a" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- ═══════════════════════════════════════
+               MAIN BODY — realistic monocoque silhouette
+          ═══════════════════════════════════════ -->
+          <!-- Primary body hull -->
+          <path d="
+            M 142,94
+            Q 152,80 162,64
+            Q 178,44 218,34
+            Q 264,24 328,20
+            Q 374,16 405,15
+            Q 430,14 446,19
+            L 458,30
+            Q 462,36 465,44
+            L 744,88
+            Q 718,85 692,88
+            L 142,94 Z
+          " fill="url(#bg)"/>
+
+          <!-- Body lower skirt / floor edge -->
+          <path d="
+            M 142,94 L 744,94 L 744,98 L 142,98 Z
+          " fill="#0c0c0c"/>
+
+          <!-- Upper body accent stripe (livery) -->
+          <path d="
+            M 218,34 Q 272,24 346,20 Q 388,17 415,17 Q 432,16 444,20
+            L 448,25 Q 432,20 415,21 Q 388,21 346,25 Q 272,28 218,38 Z
+          " fill="#C5F100" opacity="0.75"/>
+
+          <!-- ═══════════════════════════════════════
+               ENGINE COVER + AIRBOX
+          ═══════════════════════════════════════ -->
+          <path d="
+            M 370,20 Q 392,10 418,9 Q 436,8 448,14
+            L 454,25 Q 440,18 418,13 Q 392,14 370,24 Z
+          " fill="#212121"/>
+          <!-- Airbox intake (rectangular opening at top) -->
+          <path d="M 408,9 L 446,9 L 448,15 L 410,15 Z" fill="#060606" stroke="#C5F100" stroke-width="0.8" opacity="0.8"/>
+          <!-- Air intake highlight -->
+          <path d="M 409,9 L 445,9 L 446,11 L 410,11 Z" fill="#C5F100" opacity="0.35"/>
+
+          <!-- ═══════════════════════════════════════
+               SIDEPODS
+          ═══════════════════════════════════════ -->
+          <!-- Sidepod volume -->
+          <path d="
+            M 230,38 Q 310,28 395,28 Q 440,28 462,38
+            L 460,78 Q 435,80 395,80 Q 310,80 230,82 Z
+          " fill="#191919"/>
+          <!-- Sidepod top edge highlight -->
+          <path d="
+            M 230,38 Q 310,29 395,29 Q 440,29 460,39
+            L 460,42 Q 440,31 395,31 Q 310,31 230,41 Z
+          " fill="#2c2c2c"/>
+          <!-- Sidepod bottom undercut -->
+          <path d="
+            M 240,80 Q 340,76 420,76 Q 445,76 460,78
+            L 458,82 Q 442,80 420,80 Q 340,80 240,84 Z
+          " fill="#111"/>
+
+          <!-- Large sidepod air intake (Coke-bottle shape) -->
+          <path d="M 448,30 L 478,18 L 484,34 L 452,46 Z"
+                fill="#040404" stroke="#C5F100" stroke-width="1.2" opacity="0.9"/>
+          <!-- Intake inner glow edge -->
+          <path d="M 449,30 L 477,19 L 479,23 L 451,34 Z" fill="#C5F100" opacity="0.3"/>
+
+          <!-- Lower livery accent stripe (Mercedes-style) -->
+          <path d="
+            M 172,80 Q 230,70 330,66 Q 410,62 464,66
+            L 466,72 Q 412,68 330,72 Q 230,76 172,86 Z
+          " fill="#C5F100" opacity="0.65"/>
+
+          <!-- Bargeboard / turning vane -->
+          <rect x="234" y="52" width="4" height="36" rx="1.5" fill="#1e1e1e" stroke="#C5F100" stroke-width="0.6" opacity="0.7"/>
+
+          <!-- ═══════════════════════════════════════
+               COCKPIT
+          ═══════════════════════════════════════ -->
+          <!-- Cockpit rim -->
+          <path d="
+            M 420,30 Q 442,20 470,24 Q 482,28 484,40
+            Q 472,46 452,46 Q 430,46 420,38 Z
+          " fill="#111"/>
+          <path d="
+            M 422,30 Q 442,22 468,26 Q 479,30 481,40
+            L 480,41 Q 478,30 468,27 Q 442,23 422,31 Z
+          " fill="#2e2e2e"/>
+
+          <!-- ═══════════════════════════════════════
+               HALO — titanium protection arch
+          ═══════════════════════════════════════ -->
+          <path d="M 426,30 Q 452,14 480,25"
+                fill="none" stroke="#C5F100" stroke-width="6.5" stroke-linecap="round"/>
+          <path d="M 451,14 L 453,30"
+                stroke="#C5F100" stroke-width="5.5" stroke-linecap="round"/>
+          <!-- Inner halo shadow -->
+          <path d="M 428,30 Q 452,16 478,26"
+                fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+          <!-- ═══════════════════════════════════════
+               DRIVER HELMET
+          ═══════════════════════════════════════ -->
+          <ellipse cx="454" cy="25" rx="15" ry="12" fill="#1e1e1e"/>
+          <ellipse cx="454" cy="24" rx="15" ry="11" fill="#252525"/>
+          <!-- Helmet visor -->
+          <path d="M 444,23 Q 454,17 464,23 L 462,28 Q 454,24 446,28 Z" fill="#C5F100" opacity="0.5"/>
+          <!-- Helmet stripe -->
+          <rect x="447" y="19" width="14" height="3" rx="1.5" fill="#C5F100" opacity="0.7"/>
+          <!-- Head inside cockpit -->
+          <ellipse cx="454" cy="27" rx="9" ry="6" fill="#111" opacity="0.9"/>
+
+          <!-- ═══════════════════════════════════════
+               NUMBER ON SIDEPOD
+          ═══════════════════════════════════════ -->
+          <text x="325" y="65"
+                font-family="'Bebas Neue', Impact, sans-serif"
+                font-size="32" font-weight="900"
+                fill="#C5F100" letter-spacing="2" opacity="0.9">SS</text>
+
+          <!-- ═══════════════════════════════════════
+               NOSE CONE — long, tapered
+          ═══════════════════════════════════════ -->
+          <!-- Nose body -->
+          <path d="
+            M 465,44 Q 500,40 540,44 Q 600,52 660,66 Q 700,76 735,88
+            L 735,94 Q 700,82 660,70 Q 600,56 540,48 Q 500,44 465,48 Z
+          " fill="#141414"/>
+          <!-- Nose top surface -->
+          <path d="
+            M 465,44 Q 482,38 520,36 Q 572,34 625,44 Q 674,54 720,70 Q 734,76 740,84
+            L 735,88 Q 728,80 716,72 Q 670,56 622,46 Q 570,36 520,38 Q 480,40 465,44 Z
+          " fill="#1c1c1c"/>
+          <!-- Nose livery line -->
+          <path d="
+            M 475,43 Q 520,37 580,40 Q 635,44 690,60
+            L 692,62 Q 637,46 580,42 Q 520,39 475,46 Z
+          " fill="#C5F100" opacity="0.7"/>
+          <!-- Nose tip (very narrow) -->
+          <path d="M 720,72 Q 748,82 758,88 L 756,94 Q 742,88 718,78 Z" fill="#181818"/>
+          <path d="M 740,83 L 760,88 L 758,92 L 738,87 Z" fill="#C5F100" opacity="0.5"/>
+
+          <!-- ═══════════════════════════════════════
+               FRONT WING — multi-element
+          ═══════════════════════════════════════ -->
+          <!-- Far (right) endplate -->
+          <path d="M 846,86 L 844,120 L 852,120 L 856,86 Z" fill="#888" stroke="#666" stroke-width="0.5"/>
+          <rect x="844" y="89" width="3" height="26" fill="#C5F100" opacity="0.25"/>
+
+          <!-- Near (left) endplate / mounting pillar -->
+          <path d="M 720,88 L 718,118 L 726,118 L 728,88 Z" fill="#888"/>
+
+          <!-- Top flap (narrowest chord) -->
+          <path d="M 726,86 L 844,75 L 846,80 L 726,91 Z" fill="#C5F100" opacity="0.45"/>
+          <!-- Element 3 -->
+          <path d="M 725,92 L 845,82 L 847,87 L 725,97 Z" fill="#C5F100" opacity="0.65"/>
+          <!-- Element 2 -->
+          <path d="M 724,98 L 846,88 L 848,95 L 724,105 Z" fill="#C5F100" opacity="0.85"/>
+          <!-- Main plane (largest chord, lowest) -->
+          <path d="M 722,105 L 847,96 L 850,105 L 722,114 Z" fill="#C5F100"/>
+
+          <!-- Cascade winglet (outboard) -->
+          <path d="M 847,88 L 864,84 L 866,89 L 847,93 Z" fill="#C5F100" opacity="0.8"/>
+
+          <!-- Nose pylon mounting -->
+          <path d="M 742,88 L 748,72 L 756,72 L 758,88 Z" fill="#161616"/>
+
+          <!-- ═══════════════════════════════════════
+               FLOOR / UNDERTRAY
+          ═══════════════════════════════════════ -->
+          <rect x="142" y="93" width="602" height="3" fill="#0d0d0d"/>
+          <line x1="142" y1="93" x2="744" y2="93" stroke="#C5F100" stroke-width="0.8" opacity="0.25"/>
+
+          <!-- Rear diffuser -->
+          <path d="M 128,94 L 142,148 L 200,148 L 198,140 L 154,140 L 142,94 Z" fill="#111"/>
+          <line x1="155" y1="108" x2="160" y2="140" stroke="#C5F100" stroke-width="0.7" opacity="0.25"/>
+          <line x1="166" y1="104" x2="171" y2="140" stroke="#C5F100" stroke-width="0.7" opacity="0.25"/>
+          <line x1="177" y1="102" x2="181" y2="140" stroke="#C5F100" stroke-width="0.7" opacity="0.25"/>
+
+          <!-- ═══════════════════════════════════════
+               REAR TYRE — wider (F1 rear)
+          ═══════════════════════════════════════ -->
+          <circle cx="198" cy="116" r="36" fill="url(#tg)"/>
+          <circle cx="198" cy="116" r="35" fill="none" stroke="#1e1e1e" stroke-width="1.5"/>
+          <!-- Pirelli shoulder band -->
+          <circle cx="198" cy="116" r="32" fill="none" stroke="#C5F100" stroke-width="1.8" opacity="0.22"/>
+          <!-- Rim -->
+          <circle cx="198" cy="116" r="25" fill="url(#rg)"/>
+          <!-- 5-spoke rim -->
+          <g transform="translate(198,116)">
+            <!-- spoke 0: top -->
+            <polygon points="-4,-24 4,-24 5,-7 -5,-7" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <!-- spoke 72° -->
+            <polygon points="22.8,-7.4 24.4,-1 7.5,5.5 5,-1" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <!-- spoke 144° -->
+            <polygon points="14.1,19.4 9.4,23.6 -1.5,8 3,4.2" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <!-- spoke 216° -->
+            <polygon points="-14.1,19.4 -9.4,23.6 1.5,8 -3,4.2" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <!-- spoke 288° -->
+            <polygon points="-22.8,-7.4 -24.4,-1 -7.5,5.5 -5,-1" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+          </g>
+          <circle cx="198" cy="116" r="10" fill="#C5F100"/>
+          <circle cx="198" cy="116" r="5.5" fill="#0D0D0D"/>
+          <circle cx="198" cy="116" r="2.5" fill="#C5F100"/>
+          <!-- Pirelli text -->
+          <path id="pt-r" d="M 166,103 A 36 36 0 0 1 230,103" fill="none"/>
+          <text font-family="'Bebas Neue', sans-serif" font-size="7.5" fill="#C5F100" opacity="0.45" letter-spacing="2.5">
+            <textPath href="#pt-r">PIRELLI  P ZERO</textPath>
+          </text>
+
+          <!-- Rear suspension upper wishbone -->
+          <line x1="198" y1="82" x2="248" y2="68" stroke="#2e2e2e" stroke-width="2.8"/>
+          <line x1="222" y1="82" x2="248" y2="68" stroke="#2e2e2e" stroke-width="2.8"/>
+          <!-- Rear push rod -->
+          <line x1="210" y1="82" x2="240" y2="96" stroke="#2a2a2a" stroke-width="2"/>
+          <!-- Rear suspension lower arm -->
+          <line x1="194" y1="148" x2="238" y2="138" stroke="#2e2e2e" stroke-width="2.2"/>
+          <line x1="220" y1="148" x2="238" y2="138" stroke="#2e2e2e" stroke-width="2.2"/>
+
+          <!-- ═══════════════════════════════════════
+               FRONT TYRE — narrower (F1 front)
+          ═══════════════════════════════════════ -->
+          <circle cx="680" cy="120" r="30" fill="url(#tg)"/>
+          <circle cx="680" cy="120" r="29" fill="none" stroke="#1e1e1e" stroke-width="1.5"/>
+          <circle cx="680" cy="120" r="27" fill="none" stroke="#C5F100" stroke-width="1.5" opacity="0.2"/>
+          <!-- Rim -->
+          <circle cx="680" cy="120" r="21" fill="url(#rg)"/>
+          <g transform="translate(680,120)">
+            <polygon points="-3.5,-20 3.5,-20 4,-5.5 -4,-5.5" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <polygon points="19,-6.2 20.2,-0.8 6.2,4.6 4.2,-0.8" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <polygon points="11.8,16.2 7.8,19.6 -1.2,6.8 2.5,3.6" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <polygon points="-11.8,16.2 -7.8,19.6 1.2,6.8 -2.5,3.6" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+            <polygon points="-19,-6.2 -20.2,-0.8 -6.2,4.6 -4.2,-0.8" fill="#111" stroke="#0a0a0a" stroke-width="0.5"/>
+          </g>
+          <circle cx="680" cy="120" r="8.5" fill="#C5F100"/>
+          <circle cx="680" cy="120" r="4.5" fill="#0D0D0D"/>
+          <circle cx="680" cy="120" r="2" fill="#C5F100"/>
+          <path id="pt-f" d="M 653,109 A 30 30 0 0 1 707,109" fill="none"/>
+          <text font-family="'Bebas Neue', sans-serif" font-size="6.5" fill="#C5F100" opacity="0.45" letter-spacing="2">
+            <textPath href="#pt-f">PIRELLI  P ZERO</textPath>
+          </text>
+
+          <!-- Front suspension upper wishbone -->
+          <line x1="680" y1="91" x2="636" y2="76" stroke="#2e2e2e" stroke-width="2.8"/>
+          <line x1="656" y1="91" x2="636" y2="76" stroke="#2e2e2e" stroke-width="2.8"/>
+          <!-- Front push rod -->
+          <line x1="668" y1="91" x2="650" y2="104" stroke="#2a2a2a" stroke-width="2"/>
+          <!-- Front suspension lower arm -->
+          <line x1="682" y1="148" x2="642" y2="140" stroke="#2e2e2e" stroke-width="2.2"/>
+          <line x1="658" y1="148" x2="642" y2="140" stroke="#2e2e2e" stroke-width="2.2"/>
+
+          <!-- ═══════════════════════════════════════
+               EXHAUST OUTLET
+          ═══════════════════════════════════════ -->
+          <ellipse cx="166" cy="76" rx="9" ry="7" fill="#161616" stroke="#2a2a2a" stroke-width="1.2"/>
+          <ellipse cx="164" cy="76" rx="6" ry="4.5" fill="#ff5500" opacity="0.9" class="loader-exhaust-dot"/>
+          <ellipse cx="163" cy="76" rx="3" ry="2.5" fill="#ffaa00" opacity="0.7" class="loader-exhaust-dot"/>
+        </svg>
+      </div>
+
+      <!-- Ground / track surface -->
+      <div class="loader-track-surface">
+        <div class="loader-track-line"></div>
+        <div class="loader-track-dashes"></div>
+      </div>
     </div>
+
+    <!-- Flash on exit -->
+    <div class="loader-flash"></div>
   </div>
 
   <!-- ===== CUSTOM CURSOR ===== -->

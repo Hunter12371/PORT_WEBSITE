@@ -249,11 +249,12 @@ video {
   inset: 0;
   z-index: 9999;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: var(--bg);
-  transition: opacity .5s var(--ease), visibility .5s;
+  overflow: hidden;
+  transition: opacity .6s var(--ease), visibility .6s;
 }
 
 #loader.loaded {
@@ -262,14 +263,37 @@ video {
   pointer-events: none;
 }
 
+/* ---- Name block ---- */
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 80px;
+}
+
 .loader-name {
   display: flex;
   gap: 0;
   font-family: var(--ff-display);
-  font-size: clamp(48px, 10vw, 120px);
+  font-size: clamp(52px, 11vw, 130px);
   letter-spacing: 0.06em;
   color: var(--text);
   overflow: hidden;
+}
+
+.loader-tagline {
+  font-family: var(--ff-mono);
+  font-size: clamp(10px, 1.2vw, 14px);
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: taglineIn .6s 1s var(--ease-out) forwards;
+}
+
+@keyframes taglineIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .loader-letter {
@@ -279,92 +303,182 @@ video {
   animation: letterUp .6s var(--ease-out) forwards;
 }
 
-.loader-letter:nth-child(1) {
-  animation-delay: .1s;
-}
-
-.loader-letter:nth-child(2) {
-  animation-delay: .15s;
-}
-
-.loader-letter:nth-child(3) {
-  animation-delay: .2s;
-}
-
-.loader-letter:nth-child(4) {
-  animation-delay: .25s;
-}
-
-.loader-space {
-  width: 0.3em;
-}
-
-.loader-letter:nth-child(6) {
-  animation-delay: .4s;
-}
-
-.loader-letter:nth-child(7) {
-  animation-delay: .45s;
-}
-
-.loader-letter:nth-child(8) {
-  animation-delay: .5s;
-}
-
-.loader-letter:nth-child(9) {
-  animation-delay: .55s;
-}
-
-.loader-letter:nth-child(10) {
-  animation-delay: .6s;
-}
-
-.loader-letter:nth-child(11) {
-  animation-delay: .65s;
-}
+.loader-letter:nth-child(1)  { animation-delay: .08s; }
+.loader-letter:nth-child(2)  { animation-delay: .14s; }
+.loader-letter:nth-child(3)  { animation-delay: .20s; }
+.loader-letter:nth-child(4)  { animation-delay: .26s; }
+.loader-space                { width: 0.28em; }
+.loader-letter:nth-child(6)  { animation-delay: .38s; }
+.loader-letter:nth-child(7)  { animation-delay: .44s; }
+.loader-letter:nth-child(8)  { animation-delay: .50s; }
+.loader-letter:nth-child(9)  { animation-delay: .56s; }
+.loader-letter:nth-child(10) { animation-delay: .62s; }
+.loader-letter:nth-child(11) { animation-delay: .68s; }
 
 @keyframes letterUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.loader-line {
-  width: 1px;
-  height: 0;
-  background: var(--accent);
-  margin-top: 24px;
-  animation: lineGrow 1s .8s var(--ease-out) forwards;
-}
-
-@keyframes lineGrow {
-  to {
-    height: 60px;
-  }
-}
-
-.loader-bar {
-  width: 120px;
-  height: 2px;
-  background: rgba(255, 255, 255, .1);
-  margin-top: 32px;
-  border-radius: 2px;
+/* ---- Racing section ---- */
+.loader-race-section {
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  right: 0;
+  height: 120px;
   overflow: hidden;
 }
 
-.loader-bar-fill {
-  width: 0;
-  height: 100%;
-  background: var(--accent);
-  border-radius: 2px;
-  animation: barFill 1.5s .3s var(--ease) forwards;
+/* ---- Speed streak lines ---- */
+.loader-streaks {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
 }
 
-@keyframes barFill {
-  to {
-    width: 100%;
-  }
+.loader-streak {
+  position: absolute;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  opacity: 0;
+  animation: streakFly 1.5s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+.loader-streak.s1 { top: 28%;  width: 55vw; left: -55vw; animation-delay: 0.85s; opacity: 0.9; }
+.loader-streak.s2 { top: 40%;  width: 40vw; left: -40vw; animation-delay: 0.90s; opacity: 0.6; }
+.loader-streak.s3 { top: 52%;  width: 65vw; left: -65vw; animation-delay: 0.82s; opacity: 0.8; }
+.loader-streak.s4 { top: 62%;  width: 45vw; left: -45vw; animation-delay: 0.95s; opacity: 0.5; }
+.loader-streak.s5 { top: 18%;  width: 30vw; left: -30vw; animation-delay: 1.00s; opacity: 0.4; }
+.loader-streak.s6 { top: 72%;  width: 50vw; left: -50vw; animation-delay: 0.88s; opacity: 0.7; }
+
+@keyframes streakFly {
+  0%   { transform: translateX(0);      opacity: 0; }
+  5%   {                                opacity: 1; }
+  85%  {                                opacity: 1; }
+  100% { transform: translateX(200vw);  opacity: 0; }
+}
+
+/* ---- Car wrapper ---- */
+.loader-car-wrap {
+  position: absolute;
+  bottom: 28px;
+  left: 0;
+  display: flex;
+  align-items: flex-end;
+  animation: carDrive 1.55s cubic-bezier(.36, 0, .66, 0) 0.85s forwards;
+  transform: translateX(-360px);
+  will-change: transform;
+}
+
+@keyframes carDrive {
+  0%   { transform: translateX(-360px); }
+  100% { transform: translateX(calc(100vw + 200px)); }
+}
+
+.loader-car-svg {
+  width: clamp(320px, 48vw, 620px);
+  height: auto;
+  filter: drop-shadow(0 0 18px rgba(197, 241, 0, 0.35)) drop-shadow(0 4px 24px rgba(0,0,0,0.8));
+  animation: carBlur 1.55s cubic-bezier(.36, 0, .66, 0) 0.85s forwards;
+}
+
+@keyframes carBlur {
+  0%   { filter: drop-shadow(0 0 18px rgba(197,241,0,.35)) blur(0px)   brightness(1.2); }
+  15%  { filter: drop-shadow(-12px 0 22px rgba(197,241,0,.5)) blur(2px) brightness(1.4); }
+  80%  { filter: drop-shadow(-18px 0 28px rgba(197,241,0,.5)) blur(3px) brightness(1.3); }
+  100% { filter: drop-shadow(-22px 0 32px rgba(197,241,0,.3)) blur(5px) brightness(1.5); }
+}
+
+/* Exhaust glow */
+.loader-exhaust-glow {
+  position: absolute;
+  right: calc(100% - 20px);
+  bottom: 32px;
+  width: 60px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #ff8c00 0%, #ff4400 40%, transparent 80%);
+  opacity: 0;
+  animation: exhaustPulse 1.55s 0.85s forwards;
+  pointer-events: none;
+}
+
+@keyframes exhaustPulse {
+  0%   { opacity: 0; width: 20px; }
+  10%  { opacity: 0.9; width: 70px; }
+  80%  { opacity: 0.7; width: 60px; }
+  100% { opacity: 0; width: 90px; }
+}
+
+.loader-exhaust-dot {
+  animation: exhaustBlink .08s linear infinite;
+}
+@keyframes exhaustBlink {
+  0%, 100% { opacity: 0.9; }
+  50%       { opacity: 0.3; }
+}
+
+/* ---- Track & ground ---- */
+.loader-track-surface {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  height: 12px;
+}
+
+.loader-track-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255,255,255,0.12);
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: trackReveal .8s .5s var(--ease-out) forwards;
+}
+
+@keyframes trackReveal {
+  to { transform: scaleX(1); }
+}
+
+.loader-track-dashes {
+  position: absolute;
+  bottom: 6px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(197, 241, 0, 0.25) 0px,
+    rgba(197, 241, 0, 0.25) 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  transform-origin: left;
+  transform: scaleX(0);
+  animation: trackReveal .8s .55s var(--ease-out) forwards;
+}
+
+/* ---- Screen flash on exit ---- */
+.loader-flash {
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  opacity: 0;
+  pointer-events: none;
+  animation: flashIn .35s 2.2s var(--ease) forwards;
+}
+
+@keyframes flashIn {
+  0%   { opacity: 0; }
+  40%  { opacity: 0.18; }
+  100% { opacity: 0; }
 }
 
 /* ---------- CUSTOM CURSOR ---------- */

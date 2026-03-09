@@ -28,10 +28,10 @@
   // Block scroll during loading
   document.body.style.overflow = 'hidden';
   window.addEventListener('load', function() {
-    setTimeout(hideLoader, 2000);
+    setTimeout(hideLoader, 2700);
   });
-  // Fallback - force hide after 4s
-  setTimeout(hideLoader, 4000);
+  // Fallback - force hide after 5s
+  setTimeout(hideLoader, 5000);
 
   // -------- CUSTOM CURSOR --------
   let mouseX = 0, mouseY = 0;
